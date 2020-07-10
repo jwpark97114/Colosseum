@@ -42,6 +42,19 @@ class LoginActivity : BaseActivity() {
                         //                    로그인 성공
                         if(code == 200){
                             Toast.makeText(mContext,"로그인에 성공했습니다.",Toast.LENGTH_SHORT).show()
+
+//                            서버에서 내가 누구인지 구별하는데 사용하는 토큰값을 받아서 저장
+//                            (기기에 저장해서 모든 화면에서 꺼내 쓰도록 할 예정+앱을 끄거나 폰을 꺼도 유지되도록 저장)
+//                            자동로그인 기능에 활용
+
+//                            JSON에서 중간 괄호 data를 추출
+                            val data = json.getJSONObject("data")
+
+//                            data 내부의 토큰값 추출
+                            val loginUserToken = data.getString("token")
+
+//                            기기 내부에 저장
+
                         }
                         //                    로그인 실패
                         else{
