@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import kr.co.namu.colosseum.R
 
 import kr.co.namu.colosseum.datas.Topic
@@ -38,6 +39,10 @@ class TopicAdapter(val mContext:Context, val resId : Int, val mList:List<Topic>)
         val data = mList[position]
 
         titleTxt.text = data.title
+
+//        인터넷 주소의 이미지를 Glide 라이브러리로 다운받아서 이미지뷰 적용
+
+        Glide.with(mContext).load(data.imageUrl).into(topicImg)
 
 
 
