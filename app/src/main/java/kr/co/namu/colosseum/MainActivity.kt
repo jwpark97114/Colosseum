@@ -3,6 +3,7 @@ package kr.co.namu.colosseum
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.co.namu.colosseum.adapters.TopicAdapter
 import kr.co.namu.colosseum.datas.Topic
 import kr.co.namu.colosseum.datas.User
 import kr.co.namu.colosseum.utils.ServerUtil
@@ -11,6 +12,9 @@ import org.json.JSONObject
 class MainActivity : BaseActivity() {
 
     val mTopicList = ArrayList<Topic>()
+
+    lateinit var  mTopicAdapter: TopicAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,6 +27,11 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        mTopicAdapter = TopicAdapter(mContext,R.layout.topic_list_item,mTopicList)
+        topicListView.adapter = mTopicAdapter
+
+
 //        getUserInfoFromServer()
         getTopicListFromServer()
     }
@@ -47,7 +56,12 @@ class MainActivity : BaseActivity() {
                     mTopicList.add(topic)
                 }
 
+                runOnUiThread {
+
 //                목록을 모두 추가한 경우 리스트뷰 새로고침
+                    mTopicAdapter.notifyDataSetChanged()
+                }
+
 
             }
 
