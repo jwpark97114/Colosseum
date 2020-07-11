@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import kr.co.namu.colosseum.R
@@ -29,6 +30,14 @@ class TopicAdapter(val mContext:Context, val resId : Int, val mList:List<Topic>)
 
 //        tempRow는 더이상 null일 가능성이 없다. => row에게 전달.
         val row = tempRow!!
+
+        val topicImg = row.findViewById<ImageView>(R.id.topicImg)
+
+        val titleTxt = row.findViewById<TextView>(R.id.titleTxt)
+
+        val data = mList[position]
+
+        titleTxt.text = data.title
 
 
 
