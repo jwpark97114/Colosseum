@@ -2,6 +2,8 @@ package kr.co.namu.colosseum
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_edit_reply.*
 import kotlinx.android.synthetic.main.activity_view_reply_detail.*
 import kotlinx.android.synthetic.main.activity_view_reply_detail.sideTxt
 import kotlinx.android.synthetic.main.reply_list_item.*
@@ -29,6 +31,33 @@ class ViewReplyDetailActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+        postBtn.setOnClickListener {
+//            답글을 등록하고 입력한 내용 비우기
+
+            val inputContent = contentsEdt.text.toString()
+
+            if(inputContent.length<5){
+                Toast.makeText(mContext,"글자는 5자 이상입니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            ServerUtil.postRequestReReply(mContext, mReplyId, inputContent, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(json: JSONObject) {
+
+//                    다시 답글 목록을 서버에서 불러오기
+                    getTopciReplyFromServer()
+
+                    runOnUiThread {
+//                        입력한 내용 비워주기
+                        contentsEdt.setText("")
+                    }
+
+                }
+
+            })
+
+        }
 
     }
 

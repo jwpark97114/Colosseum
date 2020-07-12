@@ -382,6 +382,59 @@ class ServerUtil {
         }
 
 
+//        의견에 답글을 남기는 기능
+
+        fun postRequestReReply(
+            context: Context,
+            replyId: Int,
+            content:String,
+            handler: JsonResponseHandler?
+        ) {
+
+//            서버 통신 담당 변수
+            val client = OkHttpClient()
+
+//            어느 주소로 통신할지
+            val urlStr = "${BASE_URL}/topic_reply"
+
+//            서버에 들고갈 짐을 FormData 에 담자 (POST / PUT / PATCH에서 이 방식)
+
+            val formData = FormBody.Builder()
+                .add("parent_reply_id", replyId.toString())
+                .add("content",content)
+                .build()
+
+//            요청 정보를 종합하는 변수
+            val request = Request.Builder()
+                .url(urlStr)
+                .post(formData)
+                .header("X-Http-Token", ContextUtil.getUserToken(context))
+                .build()
+
+//            실제로 api 호출
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+//                    서버 응답이 돌아왔을때 실행되는 영역
+//                    응답 내용을 저장
+                    val bodyStr = response.body?.string()
+
+//                    이 내용을 기반으로 Json 객체 생성
+                    val json = JSONObject(bodyStr)
+                    Log.d("서버 응답 내용", json.toString())
+
+//                    handler 변수에 응답처리 코드가 들어있다면 실행시킬 것
+                    handler?.onResponse(json)
+                }
+            })
+
+
+        }
+
 
 
 

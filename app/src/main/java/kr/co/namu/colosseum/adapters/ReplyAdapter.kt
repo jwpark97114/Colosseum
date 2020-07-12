@@ -37,7 +37,7 @@ class ReplyAdapter(val mContext:Context, val resId : Int, val mList:List<Reply>)
 
 
         writerNameTxt.text = data.user.nickName
-        sideTxt.text = data.side.title
+        sideTxt.text = "(${data.side.title})"
         contentTxt.text = data.content
 
 
