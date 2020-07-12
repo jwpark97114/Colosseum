@@ -100,6 +100,12 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        getTopicDetailFromServer()
+    }
+
     fun getTopicDetailFromServer(){
 
         ServerUtil.getRequestTopicDetail(mContext, mTopicId, object : ServerUtil.JsonResponseHandler{
@@ -116,6 +122,8 @@ class ViewTopicDetailActivity : BaseActivity() {
 //                의견목록 받아 리스트뷰에 반영
 
                 val replies = topicJson.getJSONArray("replies")
+
+                mReplyList.clear()
 
                 for(i in 0..replies.length()-1){
 
