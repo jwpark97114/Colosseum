@@ -24,7 +24,7 @@ class TopicAdapter(val mContext:Context, val resId : Int, val mList:List<Topic>)
 //        tempRow가 비어있는지? null인지? => 돌려막기 (재사용성 활용) 할 재료가 없다.
         if (tempRow == null) {
 //            써먹을 재료가 없으면 새로 xml을 그려줘야함
-            tempRow = inf.inflate(R.layout.reply_list_item, null)
+            tempRow = inf.inflate(R.layout.topic_list_item, null)
 
         }
 
