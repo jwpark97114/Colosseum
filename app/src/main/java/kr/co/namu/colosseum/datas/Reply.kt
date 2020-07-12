@@ -13,7 +13,7 @@ class Reply {
 
 //        JSONObject => reply 로 변환
 
-        fun getReplyFromJson(json:JSONObject) : Reply{
+        fun getReplyFromJson(json:JSONObject) : Reply {
 
             val r = Reply()
 

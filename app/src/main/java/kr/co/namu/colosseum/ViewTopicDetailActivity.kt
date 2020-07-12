@@ -1,11 +1,10 @@
 package kr.co.namu.colosseum
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_view_topic_detail.*
-import kr.co.namu.colosseum.datas.Topic
+import kr.co.namu.colosseum.datas.Reply
 import kr.co.namu.colosseum.utils.ServerUtil
 import org.json.JSONObject
 
@@ -15,7 +14,7 @@ class ViewTopicDetailActivity : BaseActivity() {
     var mTopicId = 0
 
 //    서버에서 받아온 토론 topic 상세 정보를 담을 변수
-    lateinit var mTopicData : Topic
+    lateinit var mTopicData : Reply
 
 
 
@@ -87,7 +86,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //                멤버변수 mTopicData에 서버에서 받아온 내용을 저장
 
-                mTopicData = Topic.getTopicFromJson(topicJson)
+                mTopicData = Reply.getTopicFromJson(topicJson)
 
 //                의견목록 받아 리스트뷰에 반영
 

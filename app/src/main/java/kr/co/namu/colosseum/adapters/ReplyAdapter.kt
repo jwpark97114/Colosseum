@@ -13,7 +13,7 @@ import kr.co.namu.colosseum.R
 import kr.co.namu.colosseum.datas.Reply
 
 
-class TopicAdapter(val mContext:Context, val resId : Int, val mList:List<Reply>)
+class ReplyAdapter(val mContext:Context, val resId : Int, val mList:List<Reply>)
     : ArrayAdapter<Reply>(mContext, resId, mList) {
 
     val inf = LayoutInflater.from(mContext)
@@ -30,20 +30,6 @@ class TopicAdapter(val mContext:Context, val resId : Int, val mList:List<Reply>)
 
 //        tempRow는 더이상 null일 가능성이 없다. => row에게 전달.
         val row = tempRow!!
-
-        val topicImg = row.findViewById<ImageView>(R.id.topicImg)
-
-        val titleTxt = row.findViewById<TextView>(R.id.titleTxt)
-
-        val data = mList[position]
-
-        titleTxt.text = data.title
-
-//        인터넷 주소의 이미지를 Glide 라이브러리로 다운받아서 이미지뷰 적용
-
-        Glide.with(mContext).load(data.imageUrl).into(topicImg)
-
-
 
 
 
