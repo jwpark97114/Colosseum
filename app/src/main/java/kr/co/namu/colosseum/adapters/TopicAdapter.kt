@@ -10,11 +10,11 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import kr.co.namu.colosseum.R
 
-import kr.co.namu.colosseum.datas.Reply
+import kr.co.namu.colosseum.datas.Topic
 
 
-class TopicAdapter(val mContext:Context, val resId : Int, val mList:List<Reply>)
-    : ArrayAdapter<Reply>(mContext, resId, mList) {
+class TopicAdapter(val mContext:Context, val resId : Int, val mList:List<Topic>)
+    : ArrayAdapter<Topic>(mContext, resId, mList) {
 
     val inf = LayoutInflater.from(mContext)
 

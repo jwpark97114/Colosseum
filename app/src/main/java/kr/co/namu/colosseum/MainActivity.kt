@@ -4,14 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.namu.colosseum.adapters.TopicAdapter
-import kr.co.namu.colosseum.datas.Reply
+import kr.co.namu.colosseum.datas.Topic
 import kr.co.namu.colosseum.datas.User
 import kr.co.namu.colosseum.utils.ServerUtil
 import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
-    val mTopicList = ArrayList<Reply>()
+    val mTopicList = ArrayList<Topic>()
 
     lateinit var  mTopicAdapter: TopicAdapter
 
@@ -64,7 +64,7 @@ class MainActivity : BaseActivity() {
                     val topicJson = topics.getJSONObject(i)
 
 //                    JSONArray 내부 {}중괄호로 묶인 JSONObject들을 가지고 실제 Topic 객체로 전환
-                    val topic = Reply.getTopicFromJson(topicJson)
+                    val topic = Topic.getTopicFromJson(topicJson)
 
 //                    바꿔준 topic을 목록에 추가
                     mTopicList.add(topic)

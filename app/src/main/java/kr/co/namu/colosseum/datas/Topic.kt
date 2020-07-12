@@ -2,7 +2,7 @@ package kr.co.namu.colosseum.datas
 
 import org.json.JSONObject
 
-class Reply {
+class Topic {
 
     var id = 0
     var title = ""
@@ -12,8 +12,8 @@ class Reply {
 
     companion object {
 
-        fun getTopicFromJson(json:JSONObject) : Reply {
-            val topic = Reply()
+        fun getTopicFromJson(json:JSONObject) : Topic {
+            val topic = Topic()
 
             topic.id = json.getInt("id")
             topic.title = json.getString("title")

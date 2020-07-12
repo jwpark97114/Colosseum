@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import kr.co.namu.colosseum.R
-
 import kr.co.namu.colosseum.datas.Reply
+
 
 
 class ReplyAdapter(val mContext:Context, val resId : Int, val mList:List<Reply>)
@@ -30,6 +28,17 @@ class ReplyAdapter(val mContext:Context, val resId : Int, val mList:List<Reply>)
 
 //        tempRow는 더이상 null일 가능성이 없다. => row에게 전달.
         val row = tempRow!!
+
+        val writerNameTxt = row.findViewById<TextView>(R.id.writerNameTxt)
+        val sideTxt = row.findViewById<TextView>(R.id.sideTxt)
+        val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+
+        val data = mList[position]
+
+
+        writerNameTxt.text = data.user.nickName
+        sideTxt.text = data.side.title
+        contentTxt.text = data.content
 
 
 
