@@ -1,5 +1,6 @@
 package kr.co.namu.colosseum
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -33,6 +34,12 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        replyBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, EditReplyActivity::class.java)
+            startActivity(myIntent)
+        }
 
         voteToFirstSideBtn.setOnClickListener {
             ServerUtil.postRequestVote(mContext, mTopicData.sideList[0].id, object  : ServerUtil.JsonResponseHandler{
