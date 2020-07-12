@@ -89,6 +89,17 @@ class ViewTopicDetailActivity : BaseActivity() {
 
                 mTopicData = Topic.getTopicFromJson(topicJson)
 
+//                의견목록 받아 리스트뷰에 반영
+
+                val replies = topicJson.getJSONArray("replies")
+
+                for(i in 0..replies.length()-1){
+
+//                    의견 하나하나를 replies 클래스 형태로 변환
+
+
+                }
+
                 runOnUiThread {
 
                     titleTxt.text = mTopicData.title
