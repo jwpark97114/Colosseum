@@ -66,6 +66,7 @@
                         android:text="0표"/>
 
                     <Button
+                        android:id="@+id/voteToFirstSideBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="투표하기"/>
@@ -105,6 +106,7 @@
                         android:text="0표"/>
 
                     <Button
+                        android:id="@+id/voteToSecondSideBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="투표하기"/>
@@ -118,9 +120,31 @@
 
 
 
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/replyListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <Button
+            android:id="@+id/replyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="의견 등록하기" />
+
 
 
     </FrameLayout>
+
 
 
 </LinearLayout>
