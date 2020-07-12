@@ -120,6 +120,56 @@ class ServerUtil {
 
         }
 
+//        의견답글 목록 가져오기
+
+        fun getRequestReplyDetail(context: Context, replyId:Int, handler: JsonResponseHandler?){
+
+            //            서버 통신 담당 변수
+
+            val client = OkHttpClient()
+
+//            주소를 설정하는 기능
+            val myUrl = "${BASE_URL}/topic_reply/${replyId}".toHttpUrlOrNull()!!.newBuilder()
+//            get방식으로 요청하는 경우 주소에 우리가 보내줄 정보들을 이어 적어야한다
+//            (get, delete는 post,put,patch와는 사용방법이 다르다)
+//            myUrl.addEncodedQueryParameter("order_type", "NEW")
+
+//            모든 데이터가 주소에 첨부되면 주소작성을 마무리하고 스트링으로 변환
+            val urlStr = myUrl.build().toString()
+
+//            최종 요청 정보가 담긴 request 만들기
+            val request = Request.Builder()
+                .url(urlStr)
+                .get()
+//              헤더에 데이터 첨부는 request를 만들 때 해야한다
+//              헤더 데이터: 토큰값을 첨부해야한다(ContextUtil에 저장해둔)
+                .header("X-Http-Token",ContextUtil.getUserToken(context))
+                .build()
+
+//            실제 서버에 요청 보내기
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+//                    서버 응답이 돌아왔을때 실행되는 영역
+//                    응답 내용을 저장
+                    val bodyStr = response.body?.string()
+
+//                    이 내용을 기반으로 Json 객체 생성
+                    val json = JSONObject(bodyStr)
+                    Log.d("서버 응답 내용", json.toString())
+
+//                    handler 변수에 응답처리 코드가 들어있다면 실행시킬 것
+                    handler?.onResponse(json)
+                }
+            })
+
+
+        }
+
 
 //        임시 작업: 내 정보를 가져오는 기능
 
